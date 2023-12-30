@@ -1,0 +1,22 @@
+Package: fasteval
+Type: Package
+Title: Fast evaluation of mathematical expressions
+Version: 1.0
+Date: 2023-12-27
+Authors@R: c(
+    person("Brian W.", "Davis", email = "brianwdavis@gmail.com", role = c("aut", "cre")),
+    person("Lee", "Van Winkle", role = "ctb", comment = "tinyexpr")
+    )
+Maintainer: Brian W. Davis <brianwdavis@gmail.com>
+URL: https://github.com/brianwdavis/fasteval
+BugReports: https://github.com/brianwdavis/fasteval/issues
+Description: Quickly convert strings like "1+2" to a value of 3, 
+      including variable interpolation. This package is 
+      a thin wrapper around the C library {tinyexpr}.
+License: MIT + file LICENSE
+Imports: Rcpp (>= 1.0.10)
+LinkingTo: Rcpp
+RoxygenNote: 7.2.3
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
