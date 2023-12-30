@@ -7,6 +7,11 @@
 #' looping over a vector such as 
 #' \code{lapply(x, function(x) eval(parse(text = x)))}.
 #' 
+#' @note 
+#' Unlike the original C library, exponentiation precedence takes place from
+#' right to left to match the behavior in R. Additionally, \code{"log"}
+#' refers to the natural log, as it does in R.
+#' 
 #' @references 
 #' Van Winkle, Lewis. C Library, \code{{tinyexpr}}. https://github.com/codeplea/tinyexpr
 #' 

@@ -158,3 +158,12 @@ test_that("Malformation of quiet flag, unrecoverable", {
     fasteval("(1+2)", quiet = "tuer")
   )
 })
+
+test_that("Right-to-left exponentiation", {
+  expect_equal(fasteval("4^3^2", quiet = F), 4^3^2)
+})
+
+test_that("Log is natural log", {
+  expect_equal(fasteval("log(e^3)", quiet = F), log(exp(3)))
+})
+

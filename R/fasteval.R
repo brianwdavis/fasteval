@@ -20,7 +20,7 @@
 #'   \item{Grouping}{\strong{Only} parentheses \code{(} \code{)}}
 #'   \item{Standard infix operators}{addition (+), subtraction/negation (-), multiplication (*), division (/), exponentiation (^), modulus (\%)}
 #'   \item{Trigonometric functions}{cos, sin, tan, acos, asin, atan, atan2, cosh, sinh, tanh}
-#'   \item{Exponents and logarithms}{exp, ln (natural log), log (base 10), log10, pow, sqrt}
+#'   \item{Exponents and logarithms}{exp, ln (natural log), log (natural log), log10, pow, sqrt}
 #'   \item{Rounding}{abs, ceil, floor}
 #'   \item{Combinatorics}{
 #'     \itemize{
