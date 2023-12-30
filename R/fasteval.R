@@ -1,0 +1,85 @@
+#' Evaluate an expression
+#'
+#' @description Quickly get the numeric value of strings such as \code{"1+2"}  
+#'   or \code{"x+1"} given \code{x = 1:100}. 
+#'   Expressions are whitespace-agnostic. 
+#'   See below for supported functions.
+#'
+#' @param strings A character vector of arithmetic expressions.
+#' @param ... (Optional) Vectors of variable values to evaluate.
+#' @param quiet If \code{FALSE}, prints a warning for every NA 
+#'   value generated due to malformed expressions or missing variables.
+#'
+#' @return A numeric vector that is the result of evaluating the  
+#'   expression in each element of \code{strings}, possibly using the
+#'   named values from \code{`...`}. Alternatively, you may supply a list 
+#'   of named variable vectors instead of using separate arguments.
+#' 
+#' @details
+#' \describe{
+#'   \item{Grouping}{\strong{Only} parentheses \code{(} \code{)}}
+#'   \item{Standard infix operators}{addition (+), subtraction/negation (-), multiplication (*), division (/), exponentiation (^), modulus (\%)}
+#'   \item{Trigonometric functions}{cos, sin, tan, acos, asin, atan, atan2, cosh, sinh, tanh}
+#'   \item{Exponents and logarithms}{exp, ln (natural log), log (base 10), log10, pow, sqrt}
+#'   \item{Rounding}{abs, ceil, floor}
+#'   \item{Combinatorics}{
+#'     \itemize{
+#'       \item fac (factorials, e.g. "fac(5)" returns 120)
+#'       \item ncr (combinations, e.g. "ncr(6,2)" returns 15)
+#'       \item npr (permutations, e.g. "npr(6,2)" returns 30)
+#'       }
+#'     }
+#'   \item{Constants}{pi, e}
+#'   }
+#' @export
+#'
+#' @examples
+#' # Arithmetic only
+#' s <- c("1+3", "(8+1)/3")
+#' fasteval(s)
+#' 
+#' # Evaluating a variable
+#' s <- c("x", "3*(x-2)")
+#' fasteval(s, x = 1)
+#' 
+#' # These two examples are equivalent:
+#' # They vectorize over both the expressions and the values of `x`
+#' s <- c("x+2", "x+3")
+#' fasteval(s, x = c(1, 2))
+#' 
+#' s <- c("x+2", "x+3")
+#' v <- list(x = c(1, 2))
+#' fasteval(s, v)
+#' 
+#' # Variable names roughly follow standard R naming conventions:
+#' #  - May be arbitrary length
+#' #  - Must start with a letter
+#' #  - May contain underscores or numbers
+#' s <- c("apple1 + banana_")
+#' v <- list(apple1 = 1:2, banana_ = 3:4)
+#' fasteval(s, v)
+
+fasteval <- function(strings, ..., quiet = T) {
+  values = list(...)
+  if (...length() == 1 && is.list(..1)) {
+    values = ..1
+  } 
+  
+  needs_names = any(names(values) == "") || is.null(names(values))
+  
+  if (length(values) && needs_names) {
+    stop("Variable arguments should be named")
+  }
+
+  quiet = as.logical(quiet)
+  if (!length(quiet) || is.na(quiet)) {
+    stop("`quiet` must be coercible to TRUE or FALSE")
+  }
+  
+  if (length(values) == 0) {
+    eval_(strings, quiet[1])
+  } else {
+    eval_vars_(strings, values, quiet[1])
+  }
+}
+
