@@ -72,8 +72,10 @@ te_expr *te_compile(const char *expression, const te_variable *variables, int va
 /* Evaluates the expression. */
 double te_eval(const te_expr *n);
 
+/* These lines commented out by BWD to satisfy R CMD CHECK 
+ requirements on output safety. */
 /* Prints debugging information on the syntax tree. */
-void te_print(const te_expr *n);
+// void te_print(const te_expr *n);
 
 /* Frees the expression. */
 /* This is safe to call on NULL pointers. */
