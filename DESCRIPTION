@@ -5,7 +5,7 @@ Version: 1.0
 Date: 2023-12-27
 Authors@R: c(
     person("Brian W.", "Davis", email = "brianwdavis@gmail.com", role = c("aut", "cre")),
-    person("Lee", "Van Winkle", role = "ctb", comment = "tinyexpr")
+    person("Lewis", "Van Winkle", role = "ctb", comment = "tinyexpr")
     )
 Maintainer: Brian W. Davis <brianwdavis@gmail.com>
 URL: https://github.com/brianwdavis/fasteval

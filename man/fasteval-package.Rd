@@ -18,5 +18,5 @@ right to left to match the behavior in R. Additionally, \code{"log"}
 refers to the natural log, as it does in R.
 }
 \references{
-Van Winkle, Lewis. C Library, \code{{tinyexpr}}. https://github.com/codeplea/tinyexpr
+Van Winkle, Lewis. C Library, \code{{tinyexpr}}. \url{https://github.com/codeplea/tinyexpr}
 }
