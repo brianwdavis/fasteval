@@ -5,7 +5,7 @@
 #' \code{\link{fasteval}}, is a thin wrapper around the C library 
 #' \code{{tinyexpr}}. It is generally 50-150 times faster than 
 #' looping over a vector such as 
-#' \code{lapply(x, function(x) eval(parse(text = x)))}.
+#' \code{lapply(x, function(s) eval(parse(text = s)))}.
 #' 
 #' @note 
 #' Unlike the original C library, exponentiation precedence takes place from
