@@ -221,10 +221,11 @@ print(outputs, max = 10)
 
 ``` r
 library(ggplot2)
+outputs_df$mods <- 
+  stringr::str_replace_all(outputs_df$mods, "\\*", "%.%")
+
 ggplot(outputs_df, aes(x, y)) +
   geom_point(data = example_df) +
   geom_path() +
   facet_wrap(~mods, labeller = label_parsed)
 ```
-
-<img src="man/figures/README-plotting-1.png" width="100%" />
