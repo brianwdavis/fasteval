@@ -75,11 +75,10 @@ fasteval <- function(strings, ..., quiet = T) {
   if (!length(quiet) || is.na(quiet)) {
     stop("`quiet` must be coercible to TRUE or FALSE")
   }
-  
+
   if (length(values) == 0) {
     eval_(strings, quiet[1])
   } else {
     eval_vars_(strings, values, quiet[1])
   }
 }
-

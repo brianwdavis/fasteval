@@ -72,7 +72,6 @@ NumericVector eval_vars_(
       stop("Incompatible string length, must be 1 or %i", longest);
     }
     te_expr *expr = te_compile(expression_string, vars, num_vars, &err);
-    // TODO: if only 1 string but many variable values, compile outside this block
     
     if (expr) {
       res[i] = te_eval(expr);
