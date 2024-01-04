@@ -175,3 +175,9 @@ test_that("Many variables", {
     sum(l)
     )
 })
+
+test_that("Data is loaded and correct", {
+  res = fasteval(five_moves)
+  expect_equal(length(res), 463164)
+  expect_equal(sum(is.na(res)), 0)
+})

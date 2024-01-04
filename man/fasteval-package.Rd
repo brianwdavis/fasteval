@@ -8,7 +8,7 @@
 This package quickly converts strings like "1+2" to a value of 3, 
 including variable interpolation. The only R function, 
 \code{\link{fasteval}}, is a thin wrapper around the C library 
-\code{{tinyexpr}}. It is generally 50-150 times faster than 
+\code{{tinyexpr}}. It is generally 20-150 times faster than 
 looping over a vector such as 
 \code{lapply(x, function(s) eval(parse(text = s)))}.
 }
