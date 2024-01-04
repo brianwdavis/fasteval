@@ -1,21 +1,21 @@
 #' Five arithmetic moves to combine 6 numbers
 #'
-#' Given the numbers 1, 2, 2, 4, 5, 7; how can you combine them with 
+#' Given the numbers 1, 2, 4, 5, 7, 8; how can you combine them with 
 #'   addition, subtraction, multiplication, and division, in any order,
 #'   such that each intermediate step is always a positive integer?
 #'   This dataset lists all such unique permutations, and the results can
 #'   be quickly calculated.
 #'
 #' @format
-#' A character vector with 260,343 elements:
+#' A character vector with 463,164 elements:
 #' \itemize{
-#'   \item{\eqn{(((((1*2)*2)*4)-5)-7)}}
-#'   \item{\eqn{(((((1*2)*2)*4)-5)*7)}}
-#'   \item{\eqn{(((((1*2)*2)*4)-5)+7)}}
+#'   \item{\eqn{((((1*2)*4)-5)*7)-8}}
+#'   \item{\eqn{((((1*2)*4)-5)*7)*8}}
+#'   \item{\eqn{((((1*2)*4)-5)*7)+8}}
 #'   \item{\eqn{...}}
-#'   \item{\eqn{(7/(5/((2+4)-(2-1))))}}
-#'   \item{\eqn{(7/(5/((4-(2-1))+2)))}}
-#'   \item{\eqn{(7/(5/((4/(2/2))+1)))}}
+#'   \item{\eqn{8/(7/((4+5)-(2/1)))}}
+#'   \item{\eqn{8/(7/((5-(1*2))+4))}}
+#'   \item{\eqn{8/(7/((5-(2/1))+4))}}
 #' }
 #' 
 #' @examples
