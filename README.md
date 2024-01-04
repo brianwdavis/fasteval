@@ -229,3 +229,10 @@ ggplot(outputs_df, aes(x, y)) +
   geom_path() +
   facet_wrap(~mods, labeller = label_parsed)
 ```
+
+<!-- 
+native render resolution is low, so manually run above chunk with:
+ggsave("man/figures/README-plotting-1.png", width = 6, height = 4)
+-->
+
+<img src="man/figures/README-plotting-1.png" width="100%" />
