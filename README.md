@@ -221,6 +221,7 @@ print(outputs, max = 10)
 
 ``` r
 library(ggplot2)
+# pretty print labels
 outputs_df$mods <- 
   stringr::str_replace_all(outputs_df$mods, "\\*", "%.%")
 
