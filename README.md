@@ -20,7 +20,7 @@ interpolation for stringsets like `c("x+y", "x-y")` when `x=1` and
 You can install the development version of `{fasteval}` from GitHub:
 
 ``` r
-devtools::install_github("brianwdavis/fasteval")
+remotes::install_github("brianwdavis/fasteval")
 ```
 
 ## Basic examples
@@ -131,20 +131,21 @@ results_fast <- fasteval(five_moves)
 print(results_fast, max = 10)
 #>  [1]  13 168  29  17 168  31   2  80  18   4
 #>  [ reached getOption("max.print") -- omitted 463154 entries ]
+```
 
-
-microbenchmark::microbenchmark(
+``` r
+mb <- microbenchmark::microbenchmark(
   base = lapply(five_moves, function(x) eval(parse(text = x))),
   fasteval = fasteval(five_moves),
   times = 20
 )
-#> Warning in microbenchmark::microbenchmark(base = lapply(five_moves, function(x)
-#> eval(parse(text = x))), : less accurate nanosecond times to avoid potential
-#> integer overflows
-#> Unit: milliseconds
-#>      expr       min        lq      mean    median        uq       max neval cld
-#>      base 3254.0846 3607.9892 4150.0128 3977.2692 4663.9646 5535.8610    20   b
-#>  fasteval  222.2634  226.0295  251.5448  232.4032  242.7004  454.7573    20  a
+
+# execution times in seconds
+tibble::as_tibble(summary(mb, "s"))
+#>    expr        min     lq   mean median     uq    max neval cld  
+#>    <fct>     <dbl>  <dbl>  <dbl>  <dbl>  <dbl>  <dbl> <dbl> <chr>
+#>  1 base     14.0   14.3   15.7   15.2   16.1   20.9      20 " b" 
+#>  2 fasteval  0.215  0.219  0.234  0.226  0.241  0.291    20 "a " 
 ```
 
 ## Variable interpolation
