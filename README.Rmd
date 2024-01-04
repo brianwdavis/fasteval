@@ -27,7 +27,7 @@ This package quickly vectorizes `eval(parse(text = ...))` for standard arithmeti
 
 You can install the development version of `{fasteval}` from GitHub:
 
-``` r
+```{r, eval=FALSE}
 devtools::install_github("brianwdavis/fasteval")
 ```
 
@@ -177,7 +177,7 @@ print(outputs, max = 10)
 #   as_tibble()
 ```
 
-```{r plotting}
+```{r plotting, eval=FALSE}
 library(ggplot2)
 ggplot(outputs_df, aes(x, y)) +
   geom_point(data = example_df) +
