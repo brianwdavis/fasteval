@@ -26,10 +26,12 @@ NumericVector eval_vars_(
     LogicalVector quiet
   ) {
   int err;
+  int num_vars = list_of_values.length();
+  
   // Get the longest argument
   int strings_length = strings.length();
   int longest = std::max(0, strings_length);
-  for (int i = 0; i < list_of_values.length(); i++) {
+  for (int i = 0; i < num_vars; i++) {
     NumericVector elt = list_of_values[i];
     int elt_l = elt.length();
     longest = std::max(longest, elt_l);
@@ -43,9 +45,9 @@ NumericVector eval_vars_(
     
     // Make an array of variables
     // Then put a name and pointer struct for each variable
-    te_variable vars[list_of_values.length()];
+    te_variable vars[num_vars];
     
-    for (int j = 0; j < nms.length(); j++) {
+    for (int j = 0; j < num_vars; j++) {
       NumericVector vals_j = list_of_values[j];
       int v_idx;
       // If a list-elt doesn't have the same length as the longest 
@@ -69,7 +71,8 @@ NumericVector eval_vars_(
     } else {
       stop("Incompatible string length, must be 1 or %i", longest);
     }
-    te_expr *expr = te_compile(expression_string, vars, 2, &err);
+    te_expr *expr = te_compile(expression_string, vars, num_vars, &err);
+    // TODO: if only 1 string but many variable values, compile outside this block
     
     if (expr) {
       res[i] = te_eval(expr);

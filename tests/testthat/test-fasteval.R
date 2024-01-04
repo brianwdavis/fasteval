@@ -167,3 +167,11 @@ test_that("Log is natural log", {
   expect_equal(fasteval("log(e^3)", quiet = F), log(exp(3)))
 })
 
+test_that("Many variables", {
+  l = setNames(runif(26), LETTERS)
+  s = paste(LETTERS, collapse = "+")
+  expect_equal(
+    fasteval(s, as.list(l)),
+    sum(l)
+    )
+})
