@@ -44,7 +44,7 @@ fasteval(
 #> [1] 1 2 3
 ```
 
-### Note
+### Note on vectorization
 
 The vectorization behavior of this function is slightly different from
 base R. Only length-1 arguments will be recycled. Arguments can be
@@ -239,15 +239,21 @@ ggsave("man/figures/README-plotting-1.png", width = 6, height = 4)
 
 <img src="man/figures/README-plotting-1.png" width="100%" />
 
-## Supported functions
+## Syntax notes
+
+### Supported functions
 
 Most functions are similar to, and return the same values as, functions
 in R.
 
 -   **Grouping**: Only parentheses `(`, `)`
--   **Standard infix operators**: addition `+`, subtraction/negation
-    `-`, multiplication `*`, division `/`, exponentiation `^`, modulus
-    `%` (equivalent to `%%` in R)
+-   **Standard infix operators**:
+    -   addition `+`
+    -   subtraction/negation `-`
+    -   multiplication `*`
+    -   division `/`
+    -   exponentiation `^`
+    -   modulus `%` (equivalent to `%%` in R)
 -   **Trigonometric functions**: `cos`, `sin`, `tan`, `acos`, `asin`,
     `atan`, `atan2`, `cosh`, `sinh`, `tanh`
 -   **Exponents and logarithms**: `exp`, `ln` (natural log), `log` (also
@@ -262,11 +268,30 @@ in R.
         e.g. `"npr(6,2)"` returns `30`)
 -   **Constants**: `pi`, `e`
 
-## Variable names
+### Variable names
 
-Like in R, variable names should start with a letter and contain only
-`A-Z`, `a-z`, `0-9`, and `_`. Unlike base R, they cannot contain `.` and
-can’t be quoted or coerced with backticks if they’re non-standard. Names
-can be arbitrarily long (tested up to 10<sup>8</sup> characters). You
-can name variables the same as functions or constants (such as `"e"`),
-and supplied values will take precedence, but this is not best practice.
+Like in R, variable names must start with a letter and contain only
+`A-Z`, `a-z`, `0-9`, and `_`. Unlike base R, they **cannot** contain `.`
+and can’t be quoted or coerced with backticks if they’re non-standard.
+Names can be arbitrarily long (tested up to 10<sup>8</sup> characters).
+You can name variables the same as functions or constants (such as
+`"e"`), and supplied values will take precedence, but this is not best
+practice.
+
+### Whitespace
+
+Expressions are whitespace agnostic and newlines are allowed.
+
+``` r
+fasteval("1            +2")
+#> [1] 3
+
+fasteval("
+         
+         (1   
+   )    
+            +
+
+  2")
+#> [1] 3
+```
