@@ -251,3 +251,7 @@ fasteval("
   2")
 
 ```
+
+### Known bugs
+
+1. Expressions of the form `"(x)^0` correctly return 1 when x≥0, but incorrectly return -1 when x<0. https://github.com/codeplea/tinyexpr/issues/52
