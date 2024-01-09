@@ -1,1 +1,0 @@
-PKG_CFLAGS=+" --param=min-pagesize=0"
