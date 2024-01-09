@@ -255,3 +255,4 @@ fasteval("
 ### Known bugs
 
 1. Expressions of the form `"(x)^0` correctly return 1 when x≥0, but incorrectly return -1 when x<0. https://github.com/codeplea/tinyexpr/issues/52
+2. Compiling from source on Windows will result in WARNINGs related to the flag `-Warray-bounds`. The package works as intended however and passes tests for local use. https://github.com/codeplea/tinyexpr/issues/87
