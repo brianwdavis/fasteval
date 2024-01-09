@@ -246,7 +246,7 @@ ggsave("man/figures/README-plotting-1.png", width = 6, height = 4)
 Most functions are similar to, and return the same values as, functions
 in R.
 
--   **Grouping**: Only parentheses `(`, `)`
+-   **Grouping**: Only parentheses `(`, `)` are allowed
 -   **Standard infix operators**:
     -   addition `+`
     -   subtraction/negation `-`
@@ -270,13 +270,27 @@ in R.
 
 ### Variable names
 
-Like in R, variable names must start with a letter and contain only
-`A-Z`, `a-z`, `0-9`, and `_`. Unlike base R, they **cannot** contain `.`
-and can’t be quoted or coerced with backticks if they’re non-standard.
-Names can be arbitrarily long (tested up to 10<sup>8</sup> characters).
-You can name variables the same as functions or constants (such as
-`"e"`), and supplied values will take precedence, but this is not best
-practice.
+1.  Like in R, variable names must start with a letter and contain only
+    `A-Z`, `a-z`, `0-9`, and `_`. Unlike base R, they **cannot** contain
+    `.` and can’t be quoted or coerced with backticks if they’re
+    non-standard.
+2.  Names can be arbitrarily long (tested up to 10<sup>8</sup>
+    characters).
+3.  You can name variables the same as functions or constants (such as
+    `"e"`), and supplied values will take precedence, but this is not
+    best practice.
+4.  Additionally, there are two protected variable names, `strings` and
+    `quiet`, since they are the formal arguments of the function. If you
+    need to use those as variable names, the values can be wrapped up
+    inside a list:
+
+``` r
+fasteval("strings+quiet", strings = 1, quiet = 1)
+#> Error in fasteval("strings+quiet", strings = 1, quiet = 1): Variable arguments should be named
+
+fasteval("strings+quiet", list(strings = 1, quiet = 1))
+#> [1] 2
+```
 
 ### Whitespace
 
@@ -295,3 +309,9 @@ fasteval("
   2")
 #> [1] 3
 ```
+
+### Known bugs
+
+1.  Expressions of the form `"(x)^0` correctly return 1 when x≥0, but
+    incorrectly return -1 when x\<0.
+    <https://github.com/codeplea/tinyexpr/issues/52>
